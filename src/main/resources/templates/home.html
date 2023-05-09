@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Input de Latitude e Longitude</title>
+    <style>
+      input {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+      button[type="button"] {
+        background-color: #28a745;
+        color: #fff;
+      }
+
+      .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    
+    <form method="get" action="/resultado">
+      <h1>Input de Latitude e Longitude</h1>
+      <label for="latitude">Latitude:</label>
+      <input type="text" id="latitude" name="latitude">
+
+      <label for="longitude">Longitude:</label>
+      <input type="text" id="longitude" name="longitude">
+
+      <button type="submit">Enviar</button>
+      <button type="button" id="btn-location">Ou busque sua localização atual</button>
+    </form>
+
+    <script>
+      const btnLocation = document.querySelector('#btn-location');
+    
+      btnLocation.addEventListener('click', () => {
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(position => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+    
+            document.querySelector('#latitude').value = latitude;
+            document.querySelector('#longitude').value = longitude;
+          }, error => {
+            console.log(error.message);
+          });
+        } else {
+          console.log('Geolocalização não suportada');
+        }
+      });
+    
+      const latitudeInput = document.querySelector('#latitude');
+      const longitudeInput = document.querySelector('#longitude');
+    
+      latitudeInput.addEventListener('change', () => {
+        const regex = /^-?\d{0,9}\.\d{0,9}$/;
+        const latitude = latitudeInput.value;
+    
+        if (!regex.test(latitude)) {
+          alert('A latitude informada é inválida');
+          latitudeInput.value = '';
+        }
+      });
+    
+      longitudeInput.addEventListener('change', () => {
+        const regex = /^-?\d{0,9}\.\d{0,9}$/;
+        const longitude = longitudeInput.value;
+    
+        if (!regex.test(longitude)) {
+          alert('A longitude informada é inválida');
+          longitudeInput.value = '';
+        }
+      });
+    </script>
+  </body>
+

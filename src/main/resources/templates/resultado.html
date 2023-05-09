@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.3.1/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/leaflet/1.3.1/leaflet.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+    
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+    <style>
+        div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #map { height: 500px; width: 500px;}
+    </style>
+</head>
+<body >
+    <div>
+        <h1>Resultado:</h1>
+    <p>O hospital mais próximo é: <span th:text="${name}"></span></p>
+    <p>Com a localização: latitude =  <span id="latitude" th:text="${latitude}"></span> longitude = <span id="longitude" th:text="${longitude}"></span></p>
+    <div id="map"></div>
+     <button onclick="window.location.href='/'">Voltar</button>
+    </div>
+    <script>
+        var latitude = document.getElementById("latitude").textContent;
+        var longitude = document.getElementById("longitude").textContent;
+        var map = L.map('map').setView([latitude, longitude], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 10,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        var marker = L.marker([latitude, longitude]).addTo(map);
+    </script>
+</body>
+</html>

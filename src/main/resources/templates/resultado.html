@@ -15,11 +15,52 @@
      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
      crossorigin=""></script>
     <style>
-        div {
+        body {
+        background-image: url("https://s2.glbimg.com/dCbJGw8hXzNfTNIueq3OEZrhqxM=/1200x/smart/filters:cover():strip_icc()/s.glbimg.com/jo/g1/f/original/2017/02/17/thumbnail_huol_03mar16_cicero_oliveira_ar.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        position: relative;
       }
+      body::before {
+        content: "";
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        button {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+        button[type="button"] {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+        
       #map { height: 500px; width: 500px;}
     </style>
 </head>
@@ -30,7 +71,7 @@
     <p>Número de vagas disponíveis: <span th:text="${vacancies}"></span></p>
     <p>Com a localização: latitude =  <span id="latitude" th:text="${latitude}"></span> longitude = <span id="longitude" th:text="${longitude}"></span></p>
     <div id="map"></div>
-     <button onclick="window.location.href='/'">Voltar</button>
+     <button type="button" style = "margin-top: 40px;" onclick="window.location.href='/'">Voltar</button>
     </div>
     <script>
         var latitude = document.getElementById("latitude").textContent;

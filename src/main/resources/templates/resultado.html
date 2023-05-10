@@ -27,6 +27,7 @@
     <div>
         <h1>Resultado:</h1>
     <p>O hospital mais próximo é: <span th:text="${name}"></span></p>
+    <p>Número de vagas disponíveis: <span th:text="${vacancies}"></span></p>
     <p>Com a localização: latitude =  <span id="latitude" th:text="${latitude}"></span> longitude = <span id="longitude" th:text="${longitude}"></span></p>
     <div id="map"></div>
      <button onclick="window.location.href='/'">Voltar</button>

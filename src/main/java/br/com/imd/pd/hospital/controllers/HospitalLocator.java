@@ -16,7 +16,7 @@ public class HospitalLocator implements AmbulanceService {
         super();
 
         hospitals = new ArrayList<>();
-        hospitals.add(new HospitalImpl("Hospital Maranhão", 20, new Location(-5.6, -45.3)));
+        hospitals.add(new HospitalImpl("Hospital Maranhão", 2, new Location(-5.6, -45.3)));
         hospitals.add(new HospitalImpl("Hospital Bahia", 2, new Location(-12.8, -41.5)));
         hospitals.add(new HospitalImpl("Hospital Pernambuco", 2, new Location(-8.7, -38.2)));
         hospitals.add(new HospitalImpl("Hospital Rio Grande", 2, new Location(-6.0, -36.7)));

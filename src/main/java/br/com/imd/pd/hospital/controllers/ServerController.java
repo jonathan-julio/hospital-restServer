@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/server")
-
 public class ServerController {
     private HospitalLocator hospitalLocator;
     private Hospital hospital;
@@ -29,8 +28,7 @@ public class ServerController {
 
     public Hospital getHospital(){
         return this.hospital ;
-}
-
+    }
 
     @PostMapping("/location")
     public Hospital getLocation(@RequestBody LocationRequest locationRequest) throws RemoteException {

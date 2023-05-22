@@ -4,9 +4,20 @@
 
 ```bash
 .
-├── dist                      # programa compilado
-├── docs                      # arquivos para documentação
-└── src                       # código fonte
+├── dist                           # programa compilado
+├── docs                           # arquivos para documentação
+└── src                            # código fonte
+    └── main/.../                  
+        ├── hospital               # pacote
+        │   ├── config             # classes de configuração spring
+        │   ├── models             # modelos
+        │   ├── rest                
+        │   │   ├── controllers    # controles
+        │   │   └── dto            # objetos de transferência de dados
+        │   ├── services           # serviços
+        │   └── utils              # classes utilitárias
+        └── resources              # aquivos estáticos
+            └── templates          # arquivos html
 ```
 
 ## Compilação
@@ -14,7 +25,7 @@
 Tanto para compilar, quanto para executar é necessário possuir o Java 17.
 
 ```bash
-make build                    # compila o programa usando o maven e move para a pasta dist/
+make build       # compila o programa usando o maven e move para a pasta dist/
 ```
 
 ## Execução

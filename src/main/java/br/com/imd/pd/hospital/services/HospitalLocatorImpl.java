@@ -1,30 +1,29 @@
-package br.com.imd.pd.hospital.controllers;
+package br.com.imd.pd.hospital.services;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.imd.pd.hospital.models.AmbulanceService;
 import br.com.imd.pd.hospital.models.Hospital;
 import br.com.imd.pd.hospital.models.Location;
 
-public class HospitalLocator implements AmbulanceService {
+public class HospitalLocatorImpl implements HospitalLocator {
     private List<Hospital> hospitals;
     private int chamado;
 
-    protected HospitalLocator() throws RemoteException {
+    public HospitalLocatorImpl() throws RemoteException {
         super();
 
         hospitals = new ArrayList<>();
-        hospitals.add(new HospitalImpl("Hospital Maranhão", 2, new Location(-5.6, -45.3)));
-        hospitals.add(new HospitalImpl("Hospital Bahia", 2, new Location(-12.8, -41.5)));
-        hospitals.add(new HospitalImpl("Hospital Pernambuco", 2, new Location(-8.7, -38.2)));
-        hospitals.add(new HospitalImpl("Hospital Rio Grande", 2, new Location(-6.0, -36.7)));
+        hospitals.add(new Hospital("Hospital Maranhão", 2, new Location(-5.6, -45.3)));
+        hospitals.add(new Hospital("Hospital Bahia", 2, new Location(-12.8, -41.5)));
+        hospitals.add(new Hospital("Hospital Pernambuco", 2, new Location(-8.7, -38.2)));
+        hospitals.add(new Hospital("Hospital Rio Grande", 2, new Location(-6.0, -36.7)));
 
         chamado = 0;
     }
 
-    public Hospital findNearestHospital(Location location) throws RemoteException {
+    public Hospital findNearestHospital(Location location) throws Exception {
         Hospital nearestHospital = null;
         double nearestDistance = Double.MAX_VALUE;
 
@@ -51,10 +50,11 @@ public class HospitalLocator implements AmbulanceService {
         return nearestHospital;
     }
 
-    private Hospital findNearestHospital(Location location, List<Hospital> hospitals) throws RemoteException {
+    private Hospital findNearestHospital(Location location, List<Hospital> hospitals) throws Exception {
         
         if(hospitals.isEmpty()) {
-            throw new RemoteException("Colapso no sistema de saúde. Todos os hospitais estão sem vagas disponíveis.");
+            throw new Exception("Colapso no sistema de saúde. Todos os hospitais estão sem vagas disponíveis.");
+            
         }
 
         Hospital nearestHospital = null;

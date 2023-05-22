@@ -1,8 +1,6 @@
 package br.com.imd.pd.hospital.models;
 
-import java.io.Serializable;
-
-public class Location implements Serializable {
+public class Location {
     private double latitude;
     private double longitude;
 

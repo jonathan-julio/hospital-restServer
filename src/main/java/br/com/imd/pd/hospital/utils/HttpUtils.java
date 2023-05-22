@@ -1,4 +1,4 @@
-package br.com.imd.pd.hospital.controllers;
+package br.com.imd.pd.hospital.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package br.com.imd.pd.hospital.models;
+package br.com.imd.pd.hospital.rest.dto;
 
 public class LocationRequest {
     private double latitude;

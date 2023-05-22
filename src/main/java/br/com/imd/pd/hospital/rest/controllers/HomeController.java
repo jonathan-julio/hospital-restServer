@@ -1,4 +1,4 @@
-package br.com.imd.pd.hospital.controllers;
+package br.com.imd.pd.hospital.rest.controllers;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,6 +17,7 @@ import com.google.gson.JsonParser;
 
 import br.com.imd.pd.hospital.models.Hospital;
 import br.com.imd.pd.hospital.models.Location;
+import br.com.imd.pd.hospital.utils.HttpUtils;
 
 @Controller
 @RequestMapping("/")
@@ -52,7 +53,7 @@ public class HomeController {
         double responseLon = locationElement.getAsJsonObject().get("longitude").getAsDouble();
         Location location = new Location(responseLat, responseLon);
 
-        Hospital hospital = new HospitalImpl(name, vacancies, location);
+        Hospital hospital = new Hospital(name, vacancies, location);
 
         model.addAttribute("name", hospital.getName() );
         model.addAttribute("vacancies", hospital.getVacancies() );

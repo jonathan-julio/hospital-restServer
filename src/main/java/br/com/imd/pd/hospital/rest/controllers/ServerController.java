@@ -1,10 +1,11 @@
-package br.com.imd.pd.hospital.controllers;
+package br.com.imd.pd.hospital.rest.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.imd.pd.hospital.models.Hospital;
 import br.com.imd.pd.hospital.models.Location;
-import br.com.imd.pd.hospital.models.LocationRequest;
+import br.com.imd.pd.hospital.rest.dto.LocationRequest;
+import br.com.imd.pd.hospital.services.HospitalLocatorImpl;
 
 import java.rmi.RemoteException;
 
@@ -14,14 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/server")
 public class ServerController {
-    private HospitalLocator hospitalLocator;
+    private HospitalLocatorImpl hospitalLocator;
     private Hospital hospital;
 
     public ServerController() throws RemoteException {
-        this.hospitalLocator = new HospitalLocator();
-        
-       
+        this.hospitalLocator = new HospitalLocatorImpl();
     }
+
     public void setHospital(Hospital hospital){
             this.hospital = hospital;
     }
@@ -31,7 +31,7 @@ public class ServerController {
     }
 
     @PostMapping("/location")
-    public Hospital getLocation(@RequestBody LocationRequest locationRequest) throws RemoteException {
+    public Hospital getLocation(@RequestBody LocationRequest locationRequest) throws Exception {
         double latitude = locationRequest.getLatitude();
         double longitude = locationRequest.getLongitude();
         Location location = new Location(latitude, longitude);

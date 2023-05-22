@@ -30,7 +30,7 @@ make build       # compila o programa usando o maven e move para a pasta dist/
 
 ## Execução
 
-Após compilar o programas A execução pode ser feita com o comando a seguir.
+Após compilar o programa. A execução pode ser feita com o comando a seguir.
 
 ```bash
 java -jar ./dist/hospital-server.jar

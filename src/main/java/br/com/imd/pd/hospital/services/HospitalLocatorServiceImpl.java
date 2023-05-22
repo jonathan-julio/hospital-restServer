@@ -1,17 +1,16 @@
 package br.com.imd.pd.hospital.services;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.imd.pd.hospital.models.Hospital;
 import br.com.imd.pd.hospital.models.Location;
 
-public class HospitalLocatorImpl implements HospitalLocator {
+public class HospitalLocatorServiceImpl implements HospitalLocatorService {
     private List<Hospital> hospitals;
     private int chamado;
 
-    public HospitalLocatorImpl() throws RemoteException {
+    public HospitalLocatorServiceImpl() {
         super();
 
         hospitals = new ArrayList<>();
